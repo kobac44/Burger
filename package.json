@@ -2,7 +2,7 @@
   "name": "Burger",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/kobac44/Burger/issues"
   },
-  "homepage": "https://github.com/kobac44/Burger#readme"
+  "homepage": "https://github.com/kobac44/Burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mysql": "^2.18.1"
+  }
 }
