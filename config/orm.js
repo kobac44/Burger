@@ -1,9 +1,7 @@
 // Import MySQL connection.
 var connection = require("../config/connection.js");
 
-// Helper function for SQL syntax.
-// Let's say we want to pass 3 values into the mySQL query.
-// In order to write the query, we need 3 question marks.
+// creating the methods that will execute the necessary MySQL commands in the controller
 // The above helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
 // ["?", "?", "?"].toString() => "?,?,?";
 function printQuestionMarks(num) {
@@ -23,18 +21,7 @@ function objToSql(ob) {
     // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
         var value = ob[key];
-        // check to skip hidden properties
-        if (Object.hasOwnProperty.call(ob, key)) {
-            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
-            }
-            // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-            // e.g. {sleepy: true} => ["sleepy=true"]
-            arr.push(key + "=" + value);
-        }
     }
-
     // translate array of strings to a single comma-separated string
     return arr.toString();
 }
@@ -50,6 +37,7 @@ var orm = {
             cb(result);
         });
     },
+    // table, columns, values, and callback mapping
     create: function (table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
@@ -66,7 +54,6 @@ var orm = {
             if (err) {
                 throw err;
             }
-
             cb(result);
         });
     },
@@ -90,5 +77,5 @@ var orm = {
     }
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model (controller.js).
 module.exports = orm;

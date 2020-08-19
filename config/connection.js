@@ -9,13 +9,18 @@ var Sequelize = require("sequelize");
 var sequelize = new Sequelize("sequelize_library", "root", "", {
     host: "localhost",
     port: 3306,
-    dialect: "mysql",
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 10000
+    user: "rot",
+    password: "",
+    database: "burgers_db"
+});
+
+connection.connect(function (err) {
+    if (err) {
+        console.error("error connecting:" + err.stack);
+        return;
     }
+    console.log("connected as id " + connection.threadId);
 });
 
 // Exports the connection for other files to use
-module.exports = sequelize;
+module.exports = connection;
