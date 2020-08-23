@@ -1,7 +1,10 @@
 var express = require("express");
 
 var router = express.Router();
+
 var burger = require("../models/burger.js");
+
+// API Routes
 
 // get routes to the index file
 router.get("/", function (req, res) {
