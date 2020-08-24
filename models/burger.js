@@ -4,7 +4,9 @@ const orm = require("../config/orm.js");
 
 const burger = {
     all: function (cb) {
+        console.log("all burger model")
         orm.all("burgers", function (res) {
+            console.log("res from orm.all : ", res);
             cb(res);
         });
     },

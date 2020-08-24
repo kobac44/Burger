@@ -12,10 +12,12 @@ router.get("/", function (req, res) {
 });
 
 router.get("/burgers", function (req, res) {
+    console.log("get /burgers route")
     // callback response, getting all the burger names back
     burger.all(function (burgerData) {
+        console.log("data :", burgerData);
         //  transitional function using orm.js to connect MySql query
-        res.render("../models/index", { burger_data: burgerData });
+        res.render("index", { burger_data: burgerData });
     });
 });
 // post route back to the index file

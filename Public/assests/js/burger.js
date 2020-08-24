@@ -3,7 +3,7 @@ $(function () {
     ('.create-form').on('submit', function (event) {
         event.preventDefault();
 
-        let newBurger = {
+        let tastyBurger = {
             burger_name: $('#tastyburger').val().trim(),
             devoured: 0
         };

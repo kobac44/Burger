@@ -32,7 +32,7 @@ var orm = {
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
             if (err) {
-                throw err;
+                console.log("err get the data from burgers : ", err)
             }
             cb(result);
         });
