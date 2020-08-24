@@ -1,29 +1,29 @@
 <div class="container">
     <div class="jumbotron" id="jumbo">
         <h1> Burger Time!</h1>
-        <img src="assets/img/" alt="Burger" width="160px" class=" center">
-        <p>Check out our Awesome Burgers! Devour a Burger!</p>
-        <h2>Make your own Burger: Yum!</h2>
+        <img src="/Public/assests/img/pngfuel.com.png" alt="png" width="160px" class=" center">
+        <p>Enjoy our Wonderful Burgers! Devour a Wonderful Burger!</p>
+        <h2>Make Your Own Burger</h2>
     </div>
-</div>
-<div class="col-md-6 text-center" class="task">
-    <div class="row">
-        {{#each burger_data}}
-        {{#unless this.devoured}}
-        <div class="col-md-9 text-center">
-            <pre>{{this.id}}. {{this.burger_name}}
+    <panel>
+        <div class="col-md-6 text-center" class="task">
+            <div class="row">
+                {{#each burger_data}}
+                {{#unless this.devoured}}
+                <div class="col-md-9 text-center">
+                    <pre>{{this.id}}. {{this.burger_name}}
                   </pre>
+    </panel>
 
-        </div>
-        <div class="col-md-3 text-center">
-            <form class="devour-form button-size">
-                <input input type="hidden" class="burger_id" type="text" value={{this.id}}>
-                <br< <buttom type="submit" class="btn btn-default">Devour it</button>
-            </form>
-        </div>
-        {{/unless}}
-        {{/each}}
+    <div class="col-md-3 text-center">
+        <form class="devour-form button-size">
+            <input input type="hidden" class="burger_id" type="text" value={{this.id}}>
+            <br< <buttom type="submit" class="btn btn-default">Devour it</button>
+        </form>
     </div>
+    {{/unless}}
+    {{/each}}
+</div>
 </div>
 <div class="col-md-6 text-center" class="task">
     {{#eachh burger_data}}

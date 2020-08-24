@@ -15,7 +15,7 @@ router.get("/burgers", function (req, res) {
     // callback response, getting all the burger names back
     burger.all(function (burgerData) {
         //  transitional function using orm.js to connect MySql query
-        res.render("index", { burger_data: burgerData });
+        res.render("../models/index", { burger_data: burgerData });
     });
 });
 // post route back to the index file
