@@ -40,6 +40,7 @@ var orm = {
             if (err) {
                 console.log("err get the data from burgers : ", err)
             }
+            console.log("result", result);
             cb(result);
         });
     },
