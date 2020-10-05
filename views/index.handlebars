@@ -1,24 +1,34 @@
 <div class="container">
     <div class="jumbotron" id="jumbo">
         <h1> Burger Time!</h1>
-        <img src="/Public/assests/img/pngfuel.com.png" alt="png" width="160px" class=" center">
+        {{!-- <img src="../Public/assets/img/pngfuel.com.png" alt="png" width="160px" class=" center"> --}}
         <p>Enjoy our Wonderful Burgers! Devour a Wonderful Burger!</p>
         <h2>Make Your Own Burger</h2>
     </div>
+    <br>
+    <form class="create-form">
+        <div class="form-group">
+            <label type="burgerbox">Make a Buger</label>
+            <input type="text" id="burgerbox" name="burger">
+            <button type="submit" class="btn btn-warning" id="addbuger"></button>
+        </div>
+    </form>
     <panel>
         <div class="col-md-6 text-center" class="task">
             <div class="row">
-                {{#each burger_data}}
-                {{#unless this.devoured}}
+                {{#each burgers}}
+                {{#unless devoured}}
+
                 <div class="col-md-9 text-center">
-                    <pre>{{this.id}}. {{this.burger_name}}
-                  </pre>
+                    <span><strong>{{this.id}}. {{this.burger_name}}</strong></span>
+
     </panel>
 
     <div class="col-md-3 text-center">
-        <form class="devour-form button-size">
+        <button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
             <input input type="hidden" class="burger_id" type="text" value={{this.id}}>
-            <br< <buttom type="submit" class="btn btn-default">Devour it</button>
+            <br< <buttom type="submit" class="btn btn-default">Devour it
+        </button>
         </form>
     </div>
     {{/unless}}
