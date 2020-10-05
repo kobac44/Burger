@@ -1,39 +1,51 @@
-var express = require("express");
+const express = require("express");
+const burger = require("../models/burger");
+const router = express.Router();
 
-var router = express.Router();
+//requesting all objs from database to handlebars view
+router.get("/", (req, res) => {
+  burger.selectAll((data) => {
+    let hdbrsObj = {
+      burgers: data,
+    };
 
-var burger = require("../models/burger.js");
-
-// API Routes
-
-// get routes to the index file
-router.get("/", function (req, res) {
-    res.redirect("/burgers");
+    res.render("index", hdbrsObj);
+  });
 });
-
-router.get("/burgers", function (req, res) {
-    console.log("get /burgers route")
-    // callback response, getting all the burger names back
-    burger.all(function (burgerData) {
-        console.log("data :", burgerData);
-        //  transitional function using orm.js to connect MySql query
-        res.render("index", { burger_data: burgerData });
-    });
+//adding a burger by posting it to the database
+router.post("/api/burgers", (req, res) => {
+  burger.insertOne(
+    ["burger_name", "devoured"],
+    [req.body.burger_name, req.body.devoured],
+    (result) => {
+      res.json({ id: result.insertId });
+    }
+  );
 });
-// post route back to the index file
-router.post("burgers/create", function (req, res) {
-    burger.create(req.body.burger_name, function (result) {
-        console.log(result);
-        res.redirect("/");
-    });
-});
+//updating api burger by id to devoured
+router.put("/api/burgers/:id", (req, res) => {
+  let condition = "id = " + req.params.id;
 
-// post route back to the index file
-router.put("/burgers/:id", function (req, res) {
-    burger.update(req.params.id, function (result) {
-        console.log(result);
-        res.sendStatus(200);
-    });
+  burger.updateOne({ devoured: req.body.devoured }, condition, (result) => {
+    // If no rows were changed, then the ID must not exist, so 404
+    if (result.changedRows === 0) {
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
 });
+//delete a burger from api id and removing from database and view
+router.delete("/api/burgers/:id", (req, res) => {
+  let condition = "id = " + req.params.id;
 
+  burger.delete(condition, (result) => {
+    if (result.affectedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
+});
 module.exports = router;

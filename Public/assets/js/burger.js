@@ -20,7 +20,7 @@ $(function () {
     event.preventDefault();
     let id = $(this).data("id");
     let isdevoured = {
-      devoured: 1,
+      devoured: 0,
     };
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
