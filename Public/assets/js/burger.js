@@ -31,4 +31,15 @@ $(function () {
       location.reload();
     });
   });
+
+  $(".delete").on("click", function () {
+    const id = $(this).data("id");
+    console.log("In Delete the id - " + id);
+    $.ajax("/" + id, {
+      type: "DELETE",
+    }).then(() => {
+      console.log("deleted burger");
+      location.reload();
+    });
+  });
 });
