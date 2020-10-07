@@ -82,8 +82,11 @@ var orm = {
       cb(result);
     });
   },
-  delete: function (id, cb) {
-    var queryString = "DELETE FROM burgers WHERE id =" + id;
+  // ORM delete a burger
+  delete: function (table, condition, cb) {
+    var queryString = "DELETE FROM " + table;
+    queryString += " WHERE ";
+    queryString += condition;
     connection.query(queryString, function (err, result) {
       if (err) {
         throw err;

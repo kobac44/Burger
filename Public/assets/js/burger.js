@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   // burger to database click event
   $(".create-form").on("submit", function (event) {
     event.preventDefault();
@@ -15,31 +15,31 @@ $(document).ready(function () {
       location.reload();
     });
   });
-  //handle click event to Update the burgers to devoured on the frontend and db
+  //handle click event to Update the burgers to devoured, frontend and MySQLdb
   $(".devour-burger").on("click", function (event) {
-    console.log("burger");
     event.preventDefault();
     let id = $(this).data("id");
     let isdevoured = {
-      devoured: 0,
+      devoured: 1,
     };
-    $.ajax("/" + id, {
+    $.ajax("/api/burgers/" + id, {
       type: "PUT",
       data: isdevoured,
     }).then(() => {
-      console.log("change to devour to", newDevour);
-      // reload the page
+      // Reload the page to get the updated list
       location.reload();
     });
   });
   console.log("error");
-  $(".delete").on("click", function () {
-    const id = $(this).data("id");
-    console.log("In Delete the id - " + id);
-    $.ajax("/" + id, {
+
+  $(".delete-burger").on("click", function (event) {
+    event.preventDefault();
+    var id = $(this).data("id");
+    // Send the DELETE request.
+    $.ajax("/api/burgers/" + id, {
       type: "DELETE",
     }).then(() => {
-      console.log("deleted burger");
+      // Reload the page to get the updated list
       location.reload();
     });
   });

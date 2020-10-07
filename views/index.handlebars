@@ -10,48 +10,58 @@
         <div class="form-group">
             <label type="burgerbox">Make a Burger</label>
             <input type="text" id="burgerbox" name="burger">
-            <button type="submit" class="btn btn-warning" id=""></button>
+            <button type="submit" class="btn btn-warning" id="add">
+                <span class="fas fa-hamburger"></span>
+            </button>
         </div>
     </form>
     <panel>
-        <div class="col-md-6 text-center" class="task">
-            <div class="row">
-                {{#each burgers}}
-                {{#unless devoured}}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="leftside"><strong>Order Your Burger</strong></div>
+                    <div class="panel-body">
+                        <ul>
+                            {{!-- for each loop through the table burgers returning burger unless it has been devoured --}}
+                            {{#each burgers}}
+                            {{#unless devoured}}
+                            <li>
+                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                <button type="button" class="devour-burger btn btn-warning" id="eatbutton"
+                                    data-id="{{this.id}}" data-newDevoured="{{devour}}">
+                                    <span class="fas fa-hamburger"></span>
+                                    </span> Devour It!
+                                </button>
+                            </li>
+                            {{/unless}}
+                            {{/each}}
 
-                <div class="col-md-9 text-center">
-                    <span><strong>{{this.id}}. {{this.burger_name}}</strong></span>
 
-    </panel>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading" id="rightside"><strong>Devour Your Burger</strong></div>
+                    <div class="panel-body">
+                        <ul>
+                            {{!-- for each loop though the database table burgers and returning burgers if devoured is true --}}
+                            {{#each burgers}}
+                            {{#if devoured}}
+                            <li>
+                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
+                                <button type="button" class="delete-burger btn btn-warning" id="trashbutton"
+                                    data-id="{{this.id}}" data-newDevoured="{{devour}}"><span
+                                        class="fa fa-trash"></span>
+                                    Put Trash Out!!</button>
+                            </li>
+                            {{/if}}
+                            {{/each}}
 
-    <div class="col-md-3 text-center">
-        <button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">
-            <input input type="hidden" class="burger_id" type="text" value={{this.id}}>
-            <button type="submit" class="devour-burger btn btn-default">Devour it></button>
-        </button>
-        </form>
-    </div>
-    {{/unless}}
-    {{/each}}
-</div>
-</div>
-<div class="col-md-6">
-    <h2>Burgers Eaten!</h2>
-    <ul>
-        {{#each burger}}
-        {{#if devoured}}
-        <p>
-            {{name}}
-            <button class="delete" data-id="{{id}}">
-                {{#if devoured}}Delete {{/if}}
-            </button>
-        </p>
-        {{/if}}
-        {{/each}}
-    </ul>
-</div>
-</div>
 
-</div>
-</div>
-</div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
