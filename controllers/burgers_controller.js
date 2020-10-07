@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
     res.render("index", hdbrsObj);
   });
 });
+
 //adding a burger by posting it to the database
 router.post("/api/burgers", (req, res) => {
   burger.insertOne(
@@ -22,24 +23,23 @@ router.post("/api/burgers", (req, res) => {
     }
   );
 });
-//updating api burger by id to devoured
-router.put("/api/burgers/:id", (req, res) => {
-  let condition = "id = " + req.params.id;
 
-  burger.updateOne({ devoured: req.body.devoured }, condition, (result) => {
-    // If no rows were changed, then the ID must not exist, so 404
-    if (result.changedRows === 0) {
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
+//updating api burger by id to devoured
+router.put("/:id", function (req, res) {
+  // console.log("THING " + req.params.id);
+  //var condition = "id = " + req.params.id;
+  burger.updateOne([req.params.id], function (result) {
+    console.log(result);
+    res.redirect(303, "/");
   });
 });
+
 //delete a burger from api id and removing from database and view
 router.delete("/:id", function (req, res) {
   burger.deleteOne([req.params.id], function (result) {
     console.log(result);
     res.redirect(303, "/");
   });
+  console.log(req);
 });
 module.exports = router;

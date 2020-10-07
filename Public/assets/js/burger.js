@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
   // burger to database click event
   $(".create-form").on("submit", function (event) {
     event.preventDefault();
@@ -17,12 +17,13 @@ $(function () {
   });
   //handle click event to Update the burgers to devoured on the frontend and db
   $(".devour-burger").on("click", function (event) {
+    console.log("burger");
     event.preventDefault();
     let id = $(this).data("id");
     let isdevoured = {
       devoured: 0,
     };
-    $.ajax("/api/burgers/" + id, {
+    $.ajax("/" + id, {
       type: "PUT",
       data: isdevoured,
     }).then(() => {
@@ -31,7 +32,7 @@ $(function () {
       location.reload();
     });
   });
-
+  console.log("error");
   $(".delete").on("click", function () {
     const id = $(this).data("id");
     console.log("In Delete the id - " + id);
