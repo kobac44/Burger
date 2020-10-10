@@ -53,9 +53,19 @@ Create a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM 
 - nathanieljryan (learning asst)
 - tylerhbray (learning asst.)
 - Youtube and Google
+- @Carl Vega[TA]
+- @Jon Jackson
 
 # GitHub
 
 ## https://github.com/kobac44
 
 <img src="https://avatars0.githubusercontent.com/kobac44" width="200px">
+
+<br>
+
+<img src="./public1/assets/burgerApp.jpg" width="200px">
+
+<br>
+
+<img src="https://warm-wave-36025.herokuapp.com/>
